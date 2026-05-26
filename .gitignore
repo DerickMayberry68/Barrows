@@ -20,6 +20,9 @@
 # production
 /build
 
+# local backup of the previous Vite app
+/vite-backup/
+
 # misc
 .DS_Store
 *.pem
