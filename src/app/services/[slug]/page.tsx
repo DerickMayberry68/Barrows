@@ -73,13 +73,17 @@ export default async function ServicePage({ params }: ServicePageProps) {
           </div>
 
           <aside className="border border-stone-700 bg-stone-950/85 p-6 lg:col-span-5 lg:self-end">
-            <div className="font-mono text-[10px] uppercase tracking-[0.25em] text-red-500">Current site source</div>
+            <div className="font-mono text-[10px] uppercase tracking-[0.25em] text-red-500">Service readiness</div>
             <p className="mt-4 text-sm leading-6 text-stone-300">
-              Content on this page is based on the current Barrows service page, reorganized for this proposal layout.
+              Barrows brings field-tested crews, specialized equipment, and utility-focused safety practices to every phase of this work.
             </p>
-            <a href={service.sourceUrl} className="mt-5 inline-flex font-mono text-xs uppercase tracking-widest text-stone-100 hover:text-red-500">
-              View original page -&gt;
-            </a>
+            <div className="mt-6 grid gap-3">
+              {service.proofPoints.slice(0, 2).map((point) => (
+                <div key={point} className="border-t border-stone-800 pt-3 font-mono text-[10px] uppercase tracking-widest text-stone-400">
+                  {point}
+                </div>
+              ))}
+            </div>
           </aside>
         </div>
       </section>
@@ -119,7 +123,7 @@ export default async function ServicePage({ params }: ServicePageProps) {
               </h2>
             </div>
             <div className="font-mono text-xs uppercase tracking-widest text-stone-500">
-              {service.galleryImages.length > 0 ? "Pulled from current service page" : "Representative service image"}
+              Field-proven service capability
             </div>
           </div>
 

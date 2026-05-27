@@ -6,7 +6,6 @@ export type BarrowsService = {
   blurb: string;
   image: string;
   span: string;
-  sourceUrl: string;
   headline: string;
   intro: string;
   capabilities: string[];
@@ -24,7 +23,6 @@ export const BARROWS_SERVICES: BarrowsService[] = [
     blurb: "Distribution and transmission line installation built for regulated utility work.",
     image: "https://www.barrowsexcavation.com/uploads/1/2/0/2/120292723/published/steel-gas-pipe-installed-in-road2.jpg?1730494127",
     span: "md:col-span-2 md:row-span-2",
-    sourceUrl: "https://www.barrowsexcavation.com/natural-gas-services.html",
     headline: "Natural gas installation, replacement, and system upgrades across Arkansas and Missouri.",
     intro: "Barrows handles gas-focused excavation with the safety controls, equipment, and field experience required for commercial, industrial, distribution, and service work.",
     capabilities: [
@@ -36,7 +34,7 @@ export const BARROWS_SERVICES: BarrowsService[] = [
       "Steel and polyethylene gas system installation and maintenance",
     ],
     detail: [
-      "The current Barrows site emphasizes safety, precision, and expertise for natural gas projects. This page keeps that positioning while making the scope easier to scan for proposal review.",
+      "Natural gas work demands safety, precision, and experienced field execution from planning through tie-in.",
       "Crews are positioned for gas-related excavation that must meet strict utility standards, from new services to replacement and upgrade work.",
     ],
     proofPoints: ["Safety-first field protocols", "Steel and PE gas system capability", "Commercial and industrial utility experience"],
@@ -56,7 +54,6 @@ export const BARROWS_SERVICES: BarrowsService[] = [
     blurb: "Non-destructive digging with vac-truck crews for tight utility corridors.",
     image: "https://www.barrowsexcavation.com/uploads/1/2/0/2/120292723/editor/vac-truck1.jpg?1717566605",
     span: "",
-    sourceUrl: "https://www.barrowsexcavation.com/hydro-excavation-services.html",
     headline: "Precise hydro excavation for utility verification, trenching, and sensitive underground work.",
     intro: "Hydro excavation uses pressurized water and vacuum recovery to expose utilities and remove soil with less risk than traditional digging in congested corridors.",
     capabilities: [
@@ -83,7 +80,6 @@ export const BARROWS_SERVICES: BarrowsService[] = [
     blurb: "Substation pads, underground electric, trenching, and utility infrastructure.",
     image: "https://www.barrowsexcavation.com/uploads/1/2/0/2/120292723/published/substation.jpg?1717566676",
     span: "",
-    sourceUrl: "https://www.barrowsexcavation.com/electric-services.html",
     headline: "Electrical excavation and infrastructure support for commercial and industrial projects.",
     intro: "Barrows supports electrical infrastructure work with trenching, conduit installation, utility pole work, transformer pad excavation, and substation erection.",
     capabilities: [
@@ -96,7 +92,7 @@ export const BARROWS_SERVICES: BarrowsService[] = [
       "Substation erection",
     ],
     detail: [
-      "The existing electric services page stresses reliable execution backed by safety, precision, and the equipment needed for critical electrical projects.",
+      "Electrical excavation requires reliable execution backed by safety, precision, and the equipment needed for critical infrastructure projects.",
       "The scope spans underground electric installation through larger infrastructure and substation-related work.",
     ],
     proofPoints: ["Substation experience", "Emergency excavation support", "Underground electric infrastructure"],
@@ -115,7 +111,6 @@ export const BARROWS_SERVICES: BarrowsService[] = [
     blurb: "Trenchless installs that keep roads, creeks, and finished sites intact.",
     image: "https://www.barrowsexcavation.com/uploads/1/2/0/2/120292723/published/img-1443.jpg?1730494279",
     span: "md:col-span-2",
-    sourceUrl: "https://www.barrowsexcavation.com/directional-boring-services.html",
     headline: "Directional boring for underground utility crossings and low-disruption infrastructure installs.",
     intro: "Barrows uses directional boring for underground infrastructure where open-cut excavation would create unnecessary disruption or site impact.",
     capabilities: [
@@ -126,7 +121,7 @@ export const BARROWS_SERVICES: BarrowsService[] = [
       "Road and highway crossings",
     ],
     detail: [
-      "The current site frames boring work around reliability, quality, safety, and environmental responsibility.",
+      "Boring work is planned around reliability, quality, safety, and reduced surface disruption.",
       "The service is suited to municipalities, utility companies, contractors, and property owners that need infrastructure installed below roads, drives, and finished areas.",
     ],
     proofPoints: ["Road and highway crossing capability", "Utility and pipeline boring", "Lower surface disruption"],
@@ -144,7 +139,6 @@ export const BARROWS_SERVICES: BarrowsService[] = [
     blurb: "Trenching, grading, site work, and pad prep from one accountable crew.",
     image: "https://www.barrowsexcavation.com/uploads/1/2/0/2/120292723/editor/barrows-equipment-with-sunset.jpg?1717566742",
     span: "",
-    sourceUrl: "https://www.barrowsexcavation.com/excavation-services.html",
     headline: "General excavation services for site preparation, trenching, utilities, and remediation work.",
     intro: "Barrows provides excavation support for a wide range of project types, with a focus on safe work, precise execution, and dependable project delivery.",
     capabilities: [
@@ -156,7 +150,7 @@ export const BARROWS_SERVICES: BarrowsService[] = [
       "Excavation for septic systems",
     ],
     detail: [
-      "The existing site positions excavation as a core service for homeowners, contractors, developers, and utility-driven work.",
+      "Excavation is a core service for homeowners, contractors, developers, and utility-driven work.",
       "Crews pair heavy equipment with safety protocols to manage risk and keep excavation work controlled.",
     ],
     proofPoints: ["Site preparation", "Utility trenching", "Rock and debris removal"],
@@ -170,7 +164,6 @@ export const BARROWS_SERVICES: BarrowsService[] = [
     blurb: "In-house fabrication support for utility and infrastructure installs.",
     image: "https://www.barrowsexcavation.com/uploads/1/2/0/2/120292723/published/gas-fabrication.jpg?1717566788",
     span: "",
-    sourceUrl: "https://www.barrowsexcavation.com/fabrication.html",
     headline: "Fabrication services for welding, pipe work, and custom infrastructure needs.",
     intro: "Barrows supports utility and construction projects with fabrication capability focused on reliable, custom work and quality execution.",
     capabilities: [
@@ -180,8 +173,8 @@ export const BARROWS_SERVICES: BarrowsService[] = [
       "Utility infrastructure fabrication",
     ],
     detail: [
-      "The current site describes fabrication as a craftsmanship-driven service for clients that need dependable custom solutions.",
-      "This detail page keeps the message focused on practical utility and infrastructure support rather than broad marketing language.",
+      "Fabrication support is built around dependable custom solutions for utility and construction needs.",
+      "The work stays focused on practical utility and infrastructure support.",
     ],
     proofPoints: ["Welding capability", "Pipe fabrication", "Custom utility support"],
     galleryImages: [],
@@ -194,7 +187,6 @@ export const BARROWS_SERVICES: BarrowsService[] = [
     blurb: "Controlled tear-downs, cleanup, and site clearing before the next phase.",
     image: "https://images.unsplash.com/photo-1581094288338-2314dddb7ece?auto=format&fit=crop&w=1200&q=70",
     span: "",
-    sourceUrl: "https://www.barrowsexcavation.com/demolition-services.html",
     headline: "Demolition, dismantling, salvage, and site clearing for the next phase of work.",
     intro: "Barrows provides demolition support for owners, contractors, and developers that need removal work handled with control and accountability.",
     capabilities: [
@@ -205,7 +197,7 @@ export const BARROWS_SERVICES: BarrowsService[] = [
       "Site clearing and preparation",
     ],
     detail: [
-      "The current demolition page focuses on reliable and cost-effective service for clearing sites and preparing projects to move forward.",
+      "Demolition work focuses on reliable, controlled removal for clearing sites and preparing projects to move forward.",
       "The scope includes both removal and the supporting cleanup work that makes a site ready for the next contractor or phase.",
     ],
     proofPoints: ["Structural dismantling", "Site clearing", "Material salvage and recycling"],
@@ -219,7 +211,6 @@ export const BARROWS_SERVICES: BarrowsService[] = [
     blurb: "Municipal and rural mainline, taps, services, and repair support.",
     image: "https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?auto=format&fit=crop&w=1200&q=70",
     span: "",
-    sourceUrl: "https://www.barrowsexcavation.com/water-and-sewer-services.html",
     headline: "Water and sewer service installation, repair, drainage, and system upgrade support.",
     intro: "Barrows supports residential, commercial, and municipal water and sewer projects with installation, repair, and excavation capability.",
     capabilities: [
@@ -233,8 +224,8 @@ export const BARROWS_SERVICES: BarrowsService[] = [
       "Water meter installation",
     ],
     detail: [
-      "The existing water and sewer page presents Barrows as a partner for practical system work, from line repair to broader drainage and upgrade needs.",
-      "The page now organizes that scope for easier scanning by municipalities, commercial clients, and project teams.",
+      "Water and sewer work ranges from line repair to broader drainage and system upgrade needs.",
+      "The scope supports municipalities, commercial clients, and project teams that need accountable underground utility execution.",
     ],
     proofPoints: ["Water and sewer installation", "Drainage and culvert work", "Main break and hydrant support"],
     galleryImages: [],
