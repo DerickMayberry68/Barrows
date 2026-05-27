@@ -113,6 +113,7 @@ export default function App() {
   const [bidModalOpen, setBidModalOpen] = useState(false);
   const [dispatchModalOpen, setDispatchModalOpen] = useState(false);
   const [videoSoundEnabled, setVideoSoundEnabled] = useState(false);
+  const [showBackToTop, setShowBackToTop] = useState(false);
   const heroVideo = HOMEPAGE_VIDEOS[heroVideoIndex];
   const heroVideoRef = React.useRef(null);
   const youtubeMountRef = React.useRef(null);
@@ -124,6 +125,16 @@ export default function App() {
     }, 6500);
 
     return () => window.clearInterval(interval);
+  }, []);
+
+  React.useEffect(() => {
+    const updateBackToTop = () => {
+      setShowBackToTop(window.scrollY > 700);
+    };
+
+    updateBackToTop();
+    window.addEventListener("scroll", updateBackToTop, { passive: true });
+    return () => window.removeEventListener("scroll", updateBackToTop);
   }, []);
 
   React.useEffect(() => {
@@ -321,23 +332,23 @@ export default function App() {
             </div>
           </div>
 
-          <div className="mx-auto grid max-w-[1640px] items-center gap-10 px-6 pb-20 pt-16 md:pb-28 md:pt-24 lg:grid-cols-[minmax(0,1fr)_620px] xl:grid-cols-[minmax(0,1fr)_720px] xl:gap-16">
-            <div className="max-w-[760px]">
+          <div className="mx-auto grid max-w-[1560px] items-start gap-8 px-6 pb-12 pt-10 md:pb-16 md:pt-12 lg:grid-cols-[minmax(0,1fr)_560px] xl:grid-cols-[minmax(0,1fr)_620px] xl:gap-14">
+            <div className="max-w-[760px] lg:pt-4 xl:pt-6">
               <div className="section-label">00 / The Ozarks / Since 1983</div>
-              <h1 className="mt-6 font-black uppercase leading-[1] tracking-tight text-stone-50 text-[1.35rem] min-[420px]:text-[1.65rem] sm:text-[2.35rem] xl:text-[3.25rem]">
+              <h1 className="mt-5 font-black uppercase leading-[1] tracking-tight text-stone-50 text-[1.35rem] min-[420px]:text-[1.65rem] sm:text-[2.35rem] xl:text-[3.25rem]">
                 <span className="block whitespace-nowrap">We move <span className="text-red-500">earth</span>.</span>
                 <span className="block whitespace-nowrap">We build <span className="text-red-500">infrastructure</span>.</span>
                 <span className="block whitespace-nowrap">We don&apos;t <span className="italic">cut corners.</span></span>
               </h1>
-              <p className="mt-8 max-w-xl text-lg leading-8 text-stone-300">
+              <p className="mt-6 max-w-xl text-lg leading-8 text-stone-300">
                 Multi-generational utility contractor delivering gas, electric, water, sewer, hydro excavation, and HDD work across the four-state region.
               </p>
-              <div className="mt-10 flex flex-wrap gap-4">
+              <div className="mt-8 flex flex-wrap gap-4">
                 <BidButton onClick={() => setBidModalOpen(true)}>How can we be of service?</BidButton>
                 <Button href="#services" ghost>See services</Button>
               </div>
             </div>
-            <div className="relative w-full justify-self-center lg:w-[620px] lg:translate-x-6 xl:w-[720px] xl:justify-self-end xl:translate-x-10">
+            <div className="relative w-full justify-self-center lg:w-[560px] lg:translate-y-6 xl:w-[620px] xl:translate-y-8 xl:justify-self-end">
               <div className="absolute -inset-3 border border-red-700/25 bg-red-950/10" />
               <div className="relative overflow-hidden border border-stone-700 bg-stone-950 shadow-2xl shadow-black/50">
                 <div className="flex items-center justify-between border-b border-stone-800 bg-stone-950/90 px-4 py-3">
@@ -350,7 +361,7 @@ export default function App() {
                   </span>
                 </div>
                 <div className="p-2.5">
-                  <div className="relative aspect-video bg-stone-900">
+                  <div className="barrows-video-frame relative aspect-[21/9] bg-stone-900">
                     {heroVideo.type === "youtube" ? (
                       <div
                         key={heroVideo.youtubeId}
@@ -378,15 +389,15 @@ export default function App() {
                     </div>
                   </div>
                 </div>
-                <div className="flex items-center justify-between gap-4 border-t border-stone-800 bg-stone-950 px-4 py-3">
+                <div className="flex items-center justify-between gap-4 border-t border-stone-800 bg-stone-950 px-4 py-2">
                   <p className="font-mono text-[10px] uppercase tracking-widest text-stone-400">
-                    Built for utility, excavation, and infrastructure work.
+                    Utility / excavation / infrastructure
                   </p>
                   <div className="flex items-center gap-3">
                     <button
                       type="button"
                       onClick={() => setVideoSoundEnabled((enabled) => !enabled)}
-                      className="border border-stone-700 px-2.5 py-1 font-mono text-[9px] uppercase tracking-[0.18em] text-stone-300 hover:border-red-600 hover:text-red-500"
+                      className="whitespace-nowrap border border-stone-700 px-3 py-2 font-mono text-[9px] uppercase tracking-[0.18em] text-stone-300 hover:border-red-600 hover:text-red-500"
                     >
                       Sound {videoSoundEnabled ? "on" : "off"}
                     </button>
@@ -408,21 +419,21 @@ export default function App() {
             </div>
           </div>
 
-          <div className="relative border-t border-stone-800 bg-stone-950/90 backdrop-blur">
-            <div className="mx-auto max-w-[1500px] px-6 py-8">
+          <div className="relative z-10 border-t border-stone-800 bg-stone-950/90 backdrop-blur">
+            <div className="mx-auto max-w-[1500px] px-6 py-5">
               <div className="text-center font-mono text-[10px] uppercase tracking-[0.3em] text-red-500">
                 Excellence in Excavation and Utility Construction
               </div>
-              <div className="mt-5 flex flex-col items-center justify-center gap-5 md:flex-row md:gap-8">
+              <div className="mt-3 flex flex-col items-center justify-center gap-3 md:flex-row md:gap-8">
                 <div className="hidden h-px flex-1 bg-gradient-to-r from-transparent via-red-900/70 to-red-700/80 md:block" />
-                <div className="flex items-center gap-5 border border-stone-800 bg-black/45 px-7 py-4 shadow-2xl shadow-black/30">
+                <div className="flex items-center gap-5 border border-stone-800 bg-black/45 px-6 py-3 shadow-2xl shadow-black/30">
                   <div className="hidden font-mono text-[10px] uppercase tracking-[0.28em] text-stone-500 sm:block">
                     Four-state utility contractor
                   </div>
                   <img
                     src="https://www.barrowsexcavation.com/uploads/1/2/0/2/120292723/barrows-logo-1-removebg-preview_orig.png"
                     alt="Barrows Excavation"
-                    className="h-16 w-auto md:h-20"
+                    className="h-14 w-auto md:h-16"
                   />
                   <div className="hidden font-mono text-[10px] uppercase tracking-[0.28em] text-stone-500 sm:block">
                     Berryville, Arkansas
@@ -803,6 +814,16 @@ export default function App() {
           </div>
         </div>
       )}
+
+      <a
+        href="#top"
+        aria-label="Back to top"
+        className={`fixed bottom-5 right-5 z-40 flex h-12 w-12 items-center justify-center border border-stone-700 bg-stone-950/90 font-mono text-xl font-black text-stone-100 shadow-2xl shadow-black/40 backdrop-blur transition duration-200 hover:border-red-600 hover:text-red-500 ${
+          showBackToTop ? "translate-y-0 opacity-100" : "pointer-events-none translate-y-4 opacity-0"
+        }`}
+      >
+        ↑
+      </a>
     </div>
   );
 }
