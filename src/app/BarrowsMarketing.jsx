@@ -173,8 +173,8 @@ export default function App() {
   const [videoSoundEnabled, setVideoSoundEnabled] = useState(false);
   const heroVideo = HOMEPAGE_VIDEOS[heroVideoIndex];
   const heroVideoRef = React.useRef(null);
+  const youtubeMountRef = React.useRef(null);
   const youtubePlayerRef = React.useRef(null);
-  const youtubeContainerId = "barrows-hero-youtube-player";
 
   React.useEffect(() => {
     const interval = window.setInterval(() => {
@@ -219,18 +219,26 @@ export default function App() {
         youtubePlayerRef.current.destroy();
         youtubePlayerRef.current = null;
       }
+      if (youtubeMountRef.current) {
+        youtubeMountRef.current.innerHTML = "";
+      }
       return undefined;
     }
 
     let cancelled = false;
 
     const createPlayer = () => {
-      if (cancelled || !window.YT?.Player) return;
+      if (cancelled || !window.YT?.Player || !youtubeMountRef.current) return;
       if (youtubePlayerRef.current?.destroy) {
         youtubePlayerRef.current.destroy();
+        youtubePlayerRef.current = null;
       }
+      youtubeMountRef.current.innerHTML = "";
 
-      youtubePlayerRef.current = new window.YT.Player(youtubeContainerId, {
+      const playerTarget = document.createElement("div");
+      youtubeMountRef.current.appendChild(playerTarget);
+
+      youtubePlayerRef.current = new window.YT.Player(playerTarget, {
         videoId: heroVideo.youtubeId,
         playerVars: {
           autoplay: 1,
@@ -279,6 +287,9 @@ export default function App() {
       if (youtubePlayerRef.current?.destroy) {
         youtubePlayerRef.current.destroy();
         youtubePlayerRef.current = null;
+      }
+      if (youtubeMountRef.current) {
+        youtubeMountRef.current.innerHTML = "";
       }
     };
   }, [heroVideo.type, heroVideo.youtubeId, heroVideoIndex, videoSoundEnabled]);
@@ -367,7 +378,7 @@ export default function App() {
             </div>
           </div>
 
-          <div className="mx-auto grid max-w-[1560px] items-center gap-10 px-6 pb-20 pt-16 md:pb-28 md:pt-24 lg:grid-cols-[minmax(0,1fr)_minmax(360px,560px)] xl:gap-20">
+          <div className="mx-auto grid max-w-[1640px] items-center gap-10 px-6 pb-20 pt-16 md:pb-28 md:pt-24 lg:grid-cols-[minmax(0,1fr)_620px] xl:grid-cols-[minmax(0,1fr)_720px] xl:gap-16">
             <div className="max-w-[760px]">
               <div className="section-label">00 / The Ozarks / Since 1983</div>
               <h1 className="mt-6 font-black uppercase leading-[1] tracking-tight text-stone-50 text-[1.35rem] min-[420px]:text-[1.65rem] sm:text-[2.35rem] xl:text-[3.25rem]">
@@ -383,7 +394,7 @@ export default function App() {
                 <Button href="#services" ghost>See services</Button>
               </div>
             </div>
-            <div className="relative w-full max-w-[520px] justify-self-center lg:translate-x-8 xl:justify-self-end xl:translate-x-12">
+            <div className="relative w-full justify-self-center lg:w-[620px] lg:translate-x-6 xl:w-[720px] xl:justify-self-end xl:translate-x-10">
               <div className="absolute -inset-3 border border-red-700/25 bg-red-950/10" />
               <div className="relative overflow-hidden border border-stone-700 bg-stone-950 shadow-2xl shadow-black/50">
                 <div className="flex items-center justify-between border-b border-stone-800 bg-stone-950/90 px-4 py-3">
@@ -395,31 +406,33 @@ export default function App() {
                     Reel {heroVideoIndex + 1}
                   </span>
                 </div>
-                <div className="relative aspect-video bg-stone-900">
-                  {heroVideo.type === "youtube" ? (
-                    <div
-                      key={heroVideo.youtubeId}
-                      id={youtubeContainerId}
-                      className="h-full w-full"
-                    />
-                  ) : (
-                    <video
-                      key={heroVideo.src}
-                      ref={heroVideoRef}
-                      className="h-full w-full object-cover"
-                      src={heroVideo.src}
-                      poster={heroVideo.poster}
-                      autoPlay
-                      muted={!videoSoundEnabled}
-                      preload="auto"
-                      playsInline
-                      controls
-                      onEnded={() => setHeroVideoIndex((index) => (index + 1) % HOMEPAGE_VIDEOS.length)}
-                    />
-                  )}
-                  <div className="pointer-events-none absolute left-4 top-4 bg-stone-950/85 px-3 py-1.5">
-                    <div className="font-mono text-[9px] uppercase tracking-widest text-red-500">{heroVideo.title}</div>
-                    <div className="mt-0.5 text-xs font-semibold text-stone-100">{heroVideo.label}</div>
+                <div className="p-2.5">
+                  <div className="relative aspect-video bg-stone-900">
+                    {heroVideo.type === "youtube" ? (
+                      <div
+                        key={heroVideo.youtubeId}
+                        ref={youtubeMountRef}
+                        className="h-full w-full"
+                      />
+                    ) : (
+                      <video
+                        key={heroVideo.src}
+                        ref={heroVideoRef}
+                        className="h-full w-full object-cover"
+                        src={heroVideo.src}
+                        poster={heroVideo.poster}
+                        autoPlay
+                        muted={!videoSoundEnabled}
+                        preload="auto"
+                        playsInline
+                        controls
+                        onEnded={() => setHeroVideoIndex((index) => (index + 1) % HOMEPAGE_VIDEOS.length)}
+                      />
+                    )}
+                    <div className="pointer-events-none absolute left-4 top-4 bg-stone-950/85 px-3 py-1.5">
+                      <div className="font-mono text-[9px] uppercase tracking-widest text-red-500">{heroVideo.title}</div>
+                      <div className="mt-0.5 text-xs font-semibold text-stone-100">{heroVideo.label}</div>
+                    </div>
                   </div>
                 </div>
                 <div className="flex items-center justify-between gap-4 border-t border-stone-800 bg-stone-950 px-4 py-3">
