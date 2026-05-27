@@ -1,65 +1,7 @@
 'use client';
 
 import React, { useState } from "react";
-
-const SERVICES = [
-  {
-    n: "01",
-    title: "Natural Gas",
-    blurb: "Distribution and transmission line installation built for regulated utility work.",
-    image: "https://www.barrowsexcavation.com/uploads/1/2/0/2/120292723/published/steel-gas-pipe-installed-in-road2.jpg?1730494127",
-    span: "md:col-span-2 md:row-span-2",
-  },
-  {
-    n: "02",
-    title: "Hydro Excavation",
-    blurb: "Non-destructive digging with vac-truck crews for tight utility corridors.",
-    image: "https://www.barrowsexcavation.com/uploads/1/2/0/2/120292723/editor/vac-truck1.jpg?1717566605",
-    span: "",
-  },
-  {
-    n: "03",
-    title: "Electric",
-    blurb: "Substation pads, underground electric, trenching, and utility infrastructure.",
-    image: "https://www.barrowsexcavation.com/uploads/1/2/0/2/120292723/published/substation.jpg?1717566676",
-    span: "",
-  },
-  {
-    n: "04",
-    title: "Directional Boring",
-    blurb: "Trenchless installs that keep roads, creeks, and finished sites intact.",
-    image: "https://www.barrowsexcavation.com/uploads/1/2/0/2/120292723/published/img-1443.jpg?1730494279",
-    span: "md:col-span-2",
-  },
-  {
-    n: "05",
-    title: "Excavation",
-    blurb: "Trenching, grading, site work, and pad prep from one accountable crew.",
-    image: "https://www.barrowsexcavation.com/uploads/1/2/0/2/120292723/editor/barrows-equipment-with-sunset.jpg?1717566742",
-    span: "",
-  },
-  {
-    n: "06",
-    title: "Fabrication",
-    blurb: "In-house fabrication support for utility and infrastructure installs.",
-    image: "https://www.barrowsexcavation.com/uploads/1/2/0/2/120292723/published/gas-fabrication.jpg?1717566788",
-    span: "",
-  },
-  {
-    n: "07",
-    title: "Demolition",
-    blurb: "Controlled tear-downs, cleanup, and site clearing before the next phase.",
-    image: "https://images.unsplash.com/photo-1581094288338-2314dddb7ece?auto=format&fit=crop&w=1200&q=70",
-    span: "",
-  },
-  {
-    n: "08",
-    title: "Water & Sewer",
-    blurb: "Municipal and rural mainline, taps, services, and repair support.",
-    image: "https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?auto=format&fit=crop&w=1200&q=70",
-    span: "",
-  },
-];
+import { BARROWS_SERVICES as SERVICES } from "@/lib/barrowsServices";
 
 const STATS = [
   { value: "40+", label: "Years in business" },
@@ -226,17 +168,18 @@ export default function App() {
     }
 
     let cancelled = false;
+    const mountNode = youtubeMountRef.current;
 
     const createPlayer = () => {
-      if (cancelled || !window.YT?.Player || !youtubeMountRef.current) return;
+      if (cancelled || !window.YT?.Player || !mountNode) return;
       if (youtubePlayerRef.current?.destroy) {
         youtubePlayerRef.current.destroy();
         youtubePlayerRef.current = null;
       }
-      youtubeMountRef.current.innerHTML = "";
+      mountNode.innerHTML = "";
 
       const playerTarget = document.createElement("div");
-      youtubeMountRef.current.appendChild(playerTarget);
+      mountNode.appendChild(playerTarget);
 
       youtubePlayerRef.current = new window.YT.Player(playerTarget, {
         videoId: heroVideo.youtubeId,
@@ -288,8 +231,8 @@ export default function App() {
         youtubePlayerRef.current.destroy();
         youtubePlayerRef.current = null;
       }
-      if (youtubeMountRef.current) {
-        youtubeMountRef.current.innerHTML = "";
+      if (mountNode) {
+        mountNode.innerHTML = "";
       }
     };
   }, [heroVideo.type, heroVideo.youtubeId, heroVideoIndex, videoSoundEnabled]);
@@ -532,7 +475,7 @@ export default function App() {
 
             <div className="mt-14 grid auto-rows-[220px] grid-cols-1 gap-4 md:grid-cols-4">
               {SERVICES.map((service) => (
-                <a key={service.n} href="#contact" className={`group relative overflow-hidden border border-stone-800 bg-stone-900 ${service.span}`}>
+                <a key={service.n} href={`/services/${service.slug}`} className={`group relative overflow-hidden border border-stone-800 bg-stone-900 ${service.span}`}>
                   <img src={service.image} alt={service.title} className="absolute inset-0 h-full w-full object-cover opacity-60 transition-all duration-500 group-hover:scale-105 group-hover:opacity-80" />
                   <div className="absolute inset-0 bg-gradient-to-t from-stone-950 via-stone-950/40 to-transparent" />
                   <div className="relative flex h-full flex-col justify-between p-5">
@@ -540,7 +483,7 @@ export default function App() {
                     <div>
                       <h3 className="font-display text-2xl font-black uppercase leading-tight tracking-tight md:text-3xl">{service.title}</h3>
                       <p className="mt-2 max-w-xs text-sm text-stone-300">{service.blurb}</p>
-                      <div className="mt-3 font-mono text-[11px] uppercase tracking-widest text-stone-400 transition-colors group-hover:text-red-500">Request scope -&gt;</div>
+                      <div className="mt-3 font-mono text-[11px] uppercase tracking-widest text-stone-400 transition-colors group-hover:text-red-500">View details -&gt;</div>
                     </div>
                   </div>
                 </a>
